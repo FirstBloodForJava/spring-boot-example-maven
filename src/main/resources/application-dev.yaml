@@ -2,3 +2,8 @@ name: @name@ dev-yaml
 server:
   address: 127.0.0.1
   port: 8090
+acme:
+  remoteAddress: 127.0.0.1
+  security:
+    - username: oycm-dev
+      password: oycm-dev
