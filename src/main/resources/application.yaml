@@ -1,0 +1,10 @@
+name: @name@ yaml
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+server:
+  address: 127.0.0.1
+  port: 80
