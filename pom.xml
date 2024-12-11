@@ -62,6 +62,13 @@
             <artifactId>commons-dbcp2</artifactId>
         </dependency>
 
+        <!-- Oracle驱动 -->
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <!-- 引入插件 -->
