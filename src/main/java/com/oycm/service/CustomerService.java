@@ -7,28 +7,28 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class CustomerService {
 
     private static final Log log = LogFactory.getLog(CustomerService.class);
-    private final JdbcTemplate jdbcTemplate;
+    private final CustomerRepository customerRepository;
     @Autowired
-    public CustomerService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
-    public List<Map<String,Object>> getList() {
-        String sql = "SELECT * FROM CUSTOMER";
-        jdbcTemplate.queryForList(sql).forEach(row -> {
-            System.out.println(row);
-        });
-        return jdbcTemplate.queryForList(sql);
+    public List<Customer> getList() {
+        Iterable<Customer> iterable = customerRepository.findAll();
+
+        List<Customer> list = new ArrayList<>();
+        iterable.forEach(list::add);
+
+        return list;
     }
 
     @Bean
