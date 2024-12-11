@@ -1,0 +1,8 @@
+<Context>
+    <Resource name="MyDataSource"
+              url="jdbc:oracle:thin:@//ip:port/database"
+              type="com.zaxxer.hikari.HikariDataSource"
+              username="username"
+              password="password"
+    />
+</Context>
