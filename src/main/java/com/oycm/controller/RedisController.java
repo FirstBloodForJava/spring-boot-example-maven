@@ -1,6 +1,7 @@
 package com.oycm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ public class RedisController {
     }
 
     @GetMapping("{key}")
+    @Cacheable(value = "key", key = "#key")
     public String get(@PathVariable("key") String key) {
         return redisTemplate.opsForValue().get(key);
     }
