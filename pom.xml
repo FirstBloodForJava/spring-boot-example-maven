@@ -37,7 +37,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
         <!-- spring data jpa-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
