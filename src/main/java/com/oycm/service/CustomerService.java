@@ -23,7 +23,7 @@ public class CustomerService {
     }
 
     public List<Customer> getList() {
-        Iterable<Customer> iterable = customerRepository.findAll();
+        Iterable<Customer> iterable = customerRepository.getAll();
 
         List<Customer> list = new ArrayList<>();
         iterable.forEach(list::add);
