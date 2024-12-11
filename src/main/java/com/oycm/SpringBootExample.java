@@ -29,9 +29,10 @@ public class SpringBootExample {
     private AcmeProperties acmeProperties;
 
     @RequestMapping("/")
-    String home() {
+    AcmeProperties home() {
         log.info(JsonUtils.objToString(acmeProperties));
-        return "Hello World!" + name;
+        log.info("Hello World!" + name);
+        return acmeProperties;
     }
 
     public static void main(String[] args) {
