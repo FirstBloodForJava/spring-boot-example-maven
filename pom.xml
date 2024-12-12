@@ -74,6 +74,12 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <!--JavaGenerator 依赖-->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!-- 引入插件 -->
@@ -109,6 +115,63 @@
                     <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
             </plugin>-->
+
+
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+
+                <dependencies>
+                    <!-- 项目中有定义即可 -->
+                    <dependency>
+                        <groupId>com.oracle.ojdbc</groupId>
+                        <artifactId>ojdbc8</artifactId>
+                        <version>19.3.0.0</version>
+                    </dependency>
+
+                    <!--<dependency>
+                        <groupId>org.jooq</groupId>
+                        <artifactId>jooq-oracle</artifactId>
+                    </dependency>-->
+                </dependencies>
+
+                <configuration>
+
+                    <!-- jdbc配置 -->
+                    <jdbc>
+                        <driver>${spring.datasource.driver}</driver>
+                        <url>${spring.datasource.url}</url>
+                        <user>${spring.datasource.user}</user>
+                        <password>${spring.datasource.password}</password>
+                    </jdbc>
+                    <generator>
+                        <generate>
+                            <pojos>true</pojos>
+                        </generate>
+
+                        <!-- 代码生成器 -->
+                        <!--<name>org.jooq.codegen.JavaGenerator</name>-->
+                        <name>com.oycm.codegen.CustomJavaGenerator</name>
+
+                        <database>
+                            <!--<name>org.jooq.meta.mysql.MySQLDatabase</name>-->
+                            <!-- 包含哪些表支持正则匹配 -->
+                            <includes>.*</includes>
+                            <!-- 哪个库(schema) -->
+                            <inputSchema>LGSA_EP</inputSchema>
+
+                        </database>
+
+                        <target>
+                            <!-- 生产的包前置 -->
+                            <packageName>com.oycm.generator</packageName>
+                            <!-- 生成代码目标路径 -->
+                            <directory>src/main/java</directory>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
