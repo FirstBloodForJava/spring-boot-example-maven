@@ -9,6 +9,12 @@ acme:
       password: oycm1
     - username: oycm2
       password: oycm2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, loggers, logfile, metrics, health, env, caches, conditions, configprops, mappings, shutdown, threaddump, heapdump
 ---
 spring:
   profiles: dev
