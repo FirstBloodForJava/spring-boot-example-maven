@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @ConfigurationPropertiesScan("com.oycm.config")
 @EntityScan("com.oycm.entity")
+//@ImportResource("classpath:applicationContext.xml")
 public class SpringBootExample {
 
     private static final Log log = LogFactory.getLog(SpringBootExample.class);
