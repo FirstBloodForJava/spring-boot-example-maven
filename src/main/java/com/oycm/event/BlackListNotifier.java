@@ -18,7 +18,11 @@ public class BlackListNotifier implements ApplicationListener<BlackListEvent> {
 
     public void onApplicationEvent(BlackListEvent event) {
         log.info("receive Event");
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         log.info(JsonUtils.objToString(event));
     }
 }
