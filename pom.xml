@@ -108,6 +108,19 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-indexer</artifactId>
+            <version>5.2.6.RELEASE</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -168,10 +181,10 @@
 
                     <!-- jdbc配置 -->
                     <jdbc>
-                        <driver>oracle.jdbc.driver.OracleDriver</driver>
-                        <url>jdbc:oracle:thin:@//192.168.130.5:1521/dbtest19c</url>
-                        <user>dw_wgq_basic</user>
-                        <password>etestpwd</password>
+                        <driver>${spring.datasource.driver}</driver>
+                        <url>${spring.datasource.url}</url>
+                        <user>${spring.datasource.user}</user>
+                        <password>${spring.datasource.password}</password>
                     </jdbc>
                     <generator>
                         <generate>
