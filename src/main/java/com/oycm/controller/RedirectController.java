@@ -14,14 +14,14 @@ public class RedirectController {
     @GetMapping("/redirect1")
     public RedirectView redirect1() {
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://127.0.0.1:8090/redirect2");
+        redirectView.setUrl("https://127.0.0.1:8090/redirect2");
         return redirectView;
     }
 
     @GetMapping("/redirect2")
     public RedirectView redirect2() {
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://127.0.0.1:8090/redirect.do");
+        redirectView.setUrl("https://192.168.2.110:8090/redirect.do");
         return redirectView;
     }
 }
