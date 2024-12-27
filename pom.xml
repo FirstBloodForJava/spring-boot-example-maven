@@ -168,10 +168,10 @@
 
                     <!-- jdbc配置 -->
                     <jdbc>
-                        <driver>${spring.datasource.driver}</driver>
-                        <url>${spring.datasource.url}</url>
-                        <user>${spring.datasource.user}</user>
-                        <password>${spring.datasource.password}</password>
+                        <driver>oracle.jdbc.driver.OracleDriver</driver>
+                        <url>jdbc:oracle:thin:@//192.168.130.5:1521/dbtest19c</url>
+                        <user>dw_wgq_basic</user>
+                        <password>etestpwd</password>
                     </jdbc>
                     <generator>
                         <generate>
@@ -185,9 +185,9 @@
                         <database>
                             <!--<name>org.jooq.meta.mysql.MySQLDatabase</name>-->
                             <!-- 包含哪些表支持正则匹配 -->
-                            <includes>.*</includes>
+                            <includes>BSQ_ENTRY_BOND_LIFECYCLE</includes>
                             <!-- 哪个库(schema) -->
-                            <inputSchema>LGSA_EP</inputSchema>
+                            <inputSchema>DW_WGQ_BASIC</inputSchema>
 
                         </database>
 
