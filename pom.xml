@@ -144,7 +144,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.oycm.SpringBootExampleTests</mainClass>
+                    <mainClass>com.oycm.SpringBootExample</mainClass>
                 </configuration>
             </plugin>
 
