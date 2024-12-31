@@ -13,8 +13,8 @@
 <body>
 
 <iframe class="test" style="display: none"
-        src="http://127.0.0.1:8090/setAuthToken.html?userInfo=1%40%40***%E6%98%8E"></iframe>
-<form id="redirectForm" method="post" action="http://127.0.0.1:9090/management/shutdown">
+        src="https://127.0.0.1:8090/setAuthToken.html?userInfo=1%40%40***%E6%98%8E"></iframe>
+<form id="redirectForm" method="post" action="https://127.0.0.1:9090/management/shutdown">
 
     <input type="hidden" name="access_token" value="02a1e72c-347a-442b-b42b-70c6517fa1ef">
 
@@ -23,9 +23,6 @@
 </form>
 </body>
 <script type="text/javascript">
-    setTimeout(() => {
-        console.log("res 经过30000毫秒（1秒）后执行这部分代码");
-    }, 3000);
 
     var redirectUri="http://127.0.0.1:9090/management/shutdown";
     var access_token="02a1e72c-347a-442b-b42b-70c6517fa1ef";
