@@ -7,3 +7,5 @@ acme:
   security:
     - username: oycm-dev
       password: oycm-dev
+logging:
+  config: classpath:logback-async.xml
