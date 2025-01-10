@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 定义全局属性 -->
+    <property name="LOG_PATH" value="./log"/>
+    <property name="APP_NAME" value="springboot-example"/>
+    <property name="logMaxHistory" value="30"/>
+    <property name="charset" value="UTF-8"/>
+
+    <!-- 配置输出日志到控制台 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}.%M.%L]: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <!--同步记录-->
+    <appender name="SYNC" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${logMaxHistory}</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS}[%X{traceId},%X{spanId}] [%-5level] [%thread] %logger{36} - %msg%n</pattern>
+            <charset>${charset}</charset> <!-- 此处设置字符集 -->
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <!--控制台-->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="SYNC"/>
+    </root>
+
+</configuration>
