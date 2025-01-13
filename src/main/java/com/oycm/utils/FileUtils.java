@@ -25,12 +25,15 @@ public class FileUtils {
      * @return
      */
     public static String downloadFile(String fileTree, String fileId, String fileType) {
+        return downloadFile(fileTree, fileId + "." + fileType);
+    }
 
-        File file = new File(String.format("%s/%s.%s", fileTree, fileId, fileType));
+    public static String downloadFile(String fileTree, String fileName) {
+        File file = new File(String.format("%s/%s", fileTree, fileName));
 
         if (!file.exists()) {
 
-            URL url = FileUtils.class.getClassLoader().getResource(String.format("%s/%s.%s", fileTree, fileId, fileType));
+            URL url = FileUtils.class.getClassLoader().getResource(String.format("%s/%s", fileTree, fileName));
 
             try {
                 assert url != null;
