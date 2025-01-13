@@ -127,7 +127,7 @@
     <!-- 引入插件 -->
     <build>
         <resources>
-            <!-- 继承spring-boot-parent的功能，实现@X@替换properties的key为X的值 -->
+            <!-- 继承spring-boot-starter-parent的功能，实现@X@替换properties的key为X的值(不需要配置就有的功能) -->
             <!--<resource>
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources</directory>
@@ -145,6 +145,9 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.oycm.SpringBootExample</mainClass>
+                    <!--配置打包的jar名称以及放在的位置-->
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                    <finalName>${artifactId}</finalName>
                 </configuration>
             </plugin>
 
@@ -215,6 +218,8 @@
             </plugin>
 
         </plugins>
+        <!--maven自带的功能-->
+        <finalName>${artifactId}</finalName>
     </build>
 
 </project>
