@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -25,6 +26,20 @@ public class DownloadController {
                              HttpServletResponse response) throws IOException {
 
         String fileContent = FileUtils.downloadFile("static", fileId, fileType);
+
+        File www = new File("image");
+        if (www.exists()) {
+            if (www.isDirectory()) {
+                String[] list = www.list();
+                if (list != null) {
+                    for (String s : list) {
+                        log.info(s);
+                        FileUtils.downloadFile("image", s);
+                    }
+                }
+
+            }
+        }
 
         FileUtils.print(response.getOutputStream(), fileContent);
     }

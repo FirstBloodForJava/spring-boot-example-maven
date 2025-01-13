@@ -52,6 +52,7 @@ public class FileUtils {
         String fileContent;
         try {
             InputStream input = Files.newInputStream(file.toPath());
+            if (fileName.contains("png")) return "";
             byte[] bytes = convertToByteArray(input);
             fileContent = Base64.getEncoder().encodeToString(bytes);
 
