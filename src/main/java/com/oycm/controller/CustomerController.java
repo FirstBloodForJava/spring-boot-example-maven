@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 public class CustomerController {
@@ -20,6 +21,7 @@ public class CustomerController {
     private CustomerService customerService;
     private static Log log = LogFactory.getLog(CustomerController.class);
 
+    private static AtomicInteger counts = new AtomicInteger(0);
     @Autowired
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
