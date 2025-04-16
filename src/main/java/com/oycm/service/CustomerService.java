@@ -37,10 +37,6 @@ public class CustomerService {
         return (String... args) -> {
             // save a few customers
             repository.save(new Customer("Jack", "Bauer"));
-            repository.save(new Customer("Chloe", "O'Brian"));
-            repository.save(new Customer("Kim", "Bauer"));
-            repository.save(new Customer("David", "Palmer"));
-            repository.save(new Customer("Michelle", "Dessler"));
 
             // fetch all customers
             log.info("Customers found with findAll():");
@@ -59,7 +55,6 @@ public class CustomerService {
 
             // fetch customers by last name
             log.info("Customer found with findByLastName('Bauer'):");
-            log.info("--------------------------------------------");
             repository.findByLastName("Bauer").forEach(bauer -> {
                 log.info(bauer.toString());
             });

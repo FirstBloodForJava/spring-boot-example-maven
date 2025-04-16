@@ -7,10 +7,12 @@
     <property name="logMaxHistory" value="30"/>
     <property name="charset" value="UTF-8"/>
 
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
     <!-- 配置输出日志到控制台 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}.%M.%L]: %msg%n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] [%logger{36}.%M.%L]: %msg%n</pattern>
         </encoder>
     </appender>
 
