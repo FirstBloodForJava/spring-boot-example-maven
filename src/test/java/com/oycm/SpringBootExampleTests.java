@@ -1,6 +1,5 @@
 package com.oycm;
 
-import com.oycm.config.AcmeProperties;
 import com.oycm.utils.JsonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

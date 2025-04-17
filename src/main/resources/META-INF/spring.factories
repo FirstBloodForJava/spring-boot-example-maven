@@ -1,7 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.springframework.boot.autoconfigure.jdbc.CustomDataSourceAutoConfiguration,\
-com.oycm.config.ConfigurationBeanTest
-
-org.springframework.context.ApplicationListener=\
-org.springframework.boot.context.ApplicationPidFileWriter,\
-org.springframework.boot.web.context.WebServerPortFileWriter

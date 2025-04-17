@@ -1,10 +1,8 @@
 package com.oycm;
 
-import com.oycm.config.AcmeProperties;
-import com.oycm.utils.JsonUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.boot.SpringApplication;
@@ -20,29 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication(exclude = KafkaAutoConfiguration.class)
 @ConfigurationPropertiesScan("com.oycm.config")
 @EntityScan("com.oycm.entity")
-//@ImportResource("classpath:applicationContext.xml")
 public class SpringBootExample {
 
-    private static final Log log = LogFactory.getLog(SpringBootExample.class);
+    private static final Logger log = LoggerFactory.getLogger(SpringBootExample.class);
+
     @Value("${name}")
     private String name;
 
-    @Autowired
-    private AcmeProperties acmeProperties;
 
     @RequestMapping("/")
-    AcmeProperties home() {
-        log.info(JsonUtils.objToString(acmeProperties));
+    String home() {
+        log.info("");
         log.info("Hello World!" + name);
-        return acmeProperties;
+        return "Hello ! ";
     }
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringBootExample.class, args);
 
         ConfigurableListableBeanFactory beanFactory = applicationContext.getBeanFactory();
-
-        System.out.println(beanFactory.containsBean("acme-" + AcmeProperties.class.getName()));
 
     }
 

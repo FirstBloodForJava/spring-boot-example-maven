@@ -2,22 +2,5 @@ name: @name@ yaml
 spring:
   profiles:
     active: dev
-acme:
-  remoteAddress: 127.0.0.1
-  security:
-    - username: oycm1
-      password: oycm1
-    - username: oycm2
-      password: oycm2
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: beans, loggers, logfile, metrics, health, env, caches, conditions, configprops, mappings, shutdown, threaddump, heapdump
----
-spring:
-  profiles: dev
 server:
-#  address: 127.0.0.1
   port: 80
