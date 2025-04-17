@@ -5,3 +5,10 @@ server:
 
 logging:
   config: classpath:logback-async.xml
+
+spring:
+  kafka:
+    bootstrapServers: 47.101.155.205:9092
+    consumer:
+      group-id: spring-kafka
+      auto-offset-reset: earliest
