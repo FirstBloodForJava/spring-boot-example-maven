@@ -1,10 +1,11 @@
-name: spring-kafka-reply
 server:
   port: 9090
 
 logging:
-  config: classpath:logback-async.xml
+  config: classpath:logback-console.xml
 spring:
+  application:
+    name: spring-kafka-reply
   # 数据库连接配置
   datasource:
     driverClassName: org.h2.Driver
