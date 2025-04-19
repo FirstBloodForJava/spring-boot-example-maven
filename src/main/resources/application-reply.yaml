@@ -1,18 +1,18 @@
-name: spring-kafka
+name: spring-kafka-reply
 server:
-#  address: 127.0.0.1
-  port: 8080
+  port: 9090
 
 logging:
   config: classpath:logback-async.xml
 spring:
+  # 数据库连接配置
   datasource:
-    url: jdbc:h2:./tomcat/dateSourceTmp/gatewayDataSource
     driverClassName: org.h2.Driver
     username: user
     password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+  # kafka配置
   kafka:
     bootstrapServers: 47.101.155.205:9092
     consumer:
