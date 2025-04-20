@@ -41,7 +41,7 @@ public class CustomUndertowConfig {
             builder.setSocketOption(UndertowOptions.QUEUED_FRAMES_HIGH_WATER_MARK, 200);
 
             // 配置连接队列
-            builder.setSocketOption(Options.BACKLOG, 100);
+            //builder.setSocketOption(Options.BACKLOG, 100);
 
             // 配置读写超时时间
             builder.setSocketOption(Options.READ_TIMEOUT, 10000);
