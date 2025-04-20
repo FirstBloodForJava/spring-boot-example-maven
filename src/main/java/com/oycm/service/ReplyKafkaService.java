@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
 import org.springframework.kafka.requestreply.RequestReplyFuture;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -13,14 +14,19 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class ReplyKafkaService {
     private static final Logger logger = LoggerFactory.getLogger(ReplyKafkaService.class);
+    private static final AtomicInteger count = new AtomicInteger();
     private final ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate;
+    private final KafkaTemplate<String,String> kafkaTemplate;
 
-    public ReplyKafkaService(ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate) {
+    public ReplyKafkaService(ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate,
+                             KafkaTemplate<String,String> kafkaTemplate) {
         this.replyingKafkaTemplate = replyingKafkaTemplate;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     public String sendAndReceive(String message) throws Exception{
@@ -47,6 +53,15 @@ public class ReplyKafkaService {
         logger.info("Return value: " + consumerRecord.value());
 
         return consumerRecord.value();
+    }
+
+    public String send(String message) {
+
+        ProducerRecord<String,String> record = new ProducerRecord("org.test1", count.getAndIncrement() + "", message);
+
+        kafkaTemplate.send(record);
+
+        return "success";
     }
 
 }
