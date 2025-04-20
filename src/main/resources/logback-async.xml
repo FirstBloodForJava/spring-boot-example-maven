@@ -3,7 +3,8 @@
 
     <!-- 定义全局属性 -->
     <property name="LOG_PATH" value="./log"/>
-    <property name="APP_NAME" value="springboot-example"/>
+    <!-- 获取Spring 配置值-->
+    <springProperty scope="context" name="application" source="spring.application.name"/>
     <property name="logMaxHistory" value="30"/>
     <property name="charset" value="UTF-8"/>
 
@@ -19,7 +20,7 @@
     <appender name="FILE_TIME" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 日志文件的名称模式 -->
-            <fileNamePattern>${LOG_PATH}/${APP_NAME}-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- 启动是否清理过期日志,过期日志根据maxHistory最大文件数 -->
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
             <!-- 30个最大文件 -->
