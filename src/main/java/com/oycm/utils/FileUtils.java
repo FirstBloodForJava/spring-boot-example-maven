@@ -1,7 +1,7 @@
 package com.oycm.utils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -15,7 +15,7 @@ import java.util.Base64;
  */
 public class FileUtils {
 
-    private static Log log = LogFactory.getLog(FileUtils.class);
+    private static Logger log = LoggerFactory.getLogger(FileUtils.class);
 
     /**
      *
@@ -37,7 +37,7 @@ public class FileUtils {
 
             try {
                 assert url != null;
-                log.info(url.toURI());
+                log.info(url.toURI().toString());
                 file = new File(url.toURI());
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
@@ -57,6 +57,7 @@ public class FileUtils {
             fileContent = Base64.getEncoder().encodeToString(bytes);
 
         } catch (Exception e) {
+            log.error("访问文件失败", e);
             throw new RuntimeException("文件不存在");
         }
 
