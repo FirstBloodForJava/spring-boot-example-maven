@@ -1,7 +1,0 @@
-acme:
-  remoteAddress: 127.0.0.1
-  security:
-    - username: oycm1
-      password: oycm1
-    - username: oycm2
-      password: oycm2
