@@ -20,3 +20,8 @@ spring:
       auto-offset-reset: earliest
     admin:
       fail-fast: true
+    listener:
+      missing-topics-fatal: true
+      poll-timeout: 60s # 监听超时时间默认5s
+      no-poll-threshold: 3 # 超过时间触发的阈值
+      log-container-config: true # 初始化是否记录 ListenerConsumer 配置

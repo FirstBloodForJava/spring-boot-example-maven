@@ -68,7 +68,7 @@ public class SpringBootExample {
     }
 
     // 消费者
-    @KafkaListener(topics = "org.test1")
+    @KafkaListener(topics = "org.test1" ,concurrency = "2")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         log.info("consumer: " + cr.toString());
         latch.countDown();
