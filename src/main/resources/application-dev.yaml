@@ -18,6 +18,8 @@ spring:
     consumer:
       group-id: spring-kafka
       auto-offset-reset: earliest
+      enable-auto-commit: false # 是否自动提交
+      auto-commit-interval: 10S # 自动提交时间间隔
     admin:
       fail-fast: true
     listener:
@@ -25,3 +27,11 @@ spring:
       poll-timeout: 60s # 监听超时时间默认5s
       no-poll-threshold: 3 # 超过时间触发的阈值
       log-container-config: true # 初始化是否记录 ListenerConsumer 配置
+      idle-event-interval: 60s # 消费空闲发布事件间隔
+      ack-count: 10 # COUNT/COUNT_TIME模式 待确认消息阈值
+      monitor-interval: 60 # 校验消费者的时间间隔，默认30
+    properties:
+      max.poll.interval.ms: 60000 # 配置poll最大间隔时间
+      heartbeat.interval.ms: 1000 # 协调器心跳
+      internal.leave.group.on.close: false # 在关闭时离开组，默认true；设置为false，则不会发送重平衡，触发和broker超时
+
