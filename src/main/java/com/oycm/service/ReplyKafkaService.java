@@ -20,12 +20,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ReplyKafkaService {
     private static final Logger logger = LoggerFactory.getLogger(ReplyKafkaService.class);
     private static final AtomicInteger count = new AtomicInteger();
-    private final ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate;
+    private final ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate = null;
     private final KafkaTemplate<String,String> kafkaTemplate;
 
-    public ReplyKafkaService(ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate,
-                             KafkaTemplate<String,String> kafkaTemplate) {
-        this.replyingKafkaTemplate = replyingKafkaTemplate;
+    public ReplyKafkaService(KafkaTemplate<String,String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
