@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @SpringBootApplication()
@@ -56,20 +55,20 @@ public class SpringBootExample {
             });
 
             // 向kafka发送消息
-            template.send("org.test1", "foo1");
-            template.send("org.test1", "foo2");
-            template.send("org.test1", "foo3");
+            //template.send("org.test1", "foo1");
+            //template.send("org.test1", "foo2");
+            //template.send("org.test1", "foo3");
 
             // 等待直到 计数器为0
-            latch.await(60, TimeUnit.SECONDS);
-            log.info("All received");
+            //latch.await(60, TimeUnit.SECONDS);
+            log.info("Runner exec success");
 
         };
     }
 
     // 消费者
     @KafkaListener(topics = "org.test1")
-    public void listen(ConsumerRecord<?, ?> cr) throws Exception {
+    public void listen(ConsumerRecord<String, String> cr) throws Exception {
         log.info("consumer: " + cr.toString());
         latch.countDown();
     }
