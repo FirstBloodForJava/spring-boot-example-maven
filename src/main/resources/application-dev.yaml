@@ -16,13 +16,13 @@ spring:
   kafka:
     bootstrapServers: 47.101.155.205:9092
     consumer:
-      auto-commit-interval: 10S # 自动提交时间间隔 auto.commit.interval.ms
+      auto-commit-interval: 5S # 自动提交时间间隔 auto.commit.interval.ms
       auto-offset-reset: earliest # kafka server没有偏移量存在的策略 auto.offset.reset
       bootstrap-servers: 47.101.155.205:9092 # 指定 kafka 消费者kafka集群 bootstrap.servers
       client-id: local # 指定消费者 client.id配置 消费者日志上下文会打印，用于日志跟踪
-      enable-auto-commit: true # 是否后台自动提交偏移量
-      fetch-max-wait: 500 # fetch.max.wait.ms 消费一次 fetch.min.bytes 没达到这个标准的阻塞时间
-      fetch-min-size: 1 # # 消费者请求一次最小的响应数据单位字节,如果服务端没有足够的数据返回，则会等待至超时返回
+      enable-auto-commit: false # 是否后台自动提交偏移量
+      fetch-max-wait: 100 # fetch.max.wait.ms 消费一次 fetch.min.bytes 没达到这个标准的阻塞时间
+      fetch-min-size: 1024 # # 消费者请求一次最小的响应数据单位字节,如果服务端没有足够的数据返回，则会等待至超时返回
       group-id: spring-kafka # 指定kafka消费者组
       heartbeat-interval: 10000 # # 协调器心跳间隔时间 heartbeat.interval.ms，需要小于 session.timeout.ms 时间
       #isolation-level: read_uncommitted # isolation.level 事务性消息设置，没有事务不能显示指定
@@ -32,18 +32,27 @@ spring:
     admin:
       fail-fast: true
     listener:
-      missing-topics-fatal: true
-      poll-timeout: 60s # 监听超时时间默认5s
-      no-poll-threshold: 3 # 超过时间触发的阈值
-      log-container-config: true # 初始化是否记录 ListenerConsumer 配置
-      idle-event-interval: 60s # 消费空闲发布事件间隔
+      ack-mode: batch # 消息确认模式，默认batch
+      client-id: windows #消费者前缀
       ack-count: 10 # COUNT/COUNT_TIME模式 待确认消息阈值
-      monitor-interval: 60 # 校验消费者的时间间隔，默认30
+      ack-time: 10S # TIME/COUNT_TIME模式 待确认时间阈值
+      poll-timeout: 5s # 监听超时时间默认5s
+      no-poll-threshold: 3 # 两次poll时间间隔超过 阈值*超时时间
+      idle-event-interval: 60s # 消费者空闲发布事件间隔
+      monitor-interval: 30 # 校验消费者是否空闲执行器配置，默认30s
+      log-container-config: true # 初始化是否记录 ListenerConsumer 配置
+      missing-topics-fatal: true # 默认false，是否校验Topic，校验开启，一个Topic不存在则启动失败
+      concurrency: 1 # 配置消费者的全局并发数
+      type: single # single/batch 返回一个或一批 ConsumerRecords
     properties:
-      max.poll.interval.ms: 30000 # 配置poll最大间隔时间
+      max.poll.interval.ms: 10000 # 配置poll最大间隔时间
       heartbeat.interval.ms: 1000 # 协调器心跳
       session.timeout.ms: 30000 # 默认10s kafka消费者与broker的超时时间
       internal.leave.group.on.close: true # 在关闭时离开组，默认true；设置为false
       partition.assignment.strategy: org.apache.kafka.clients.consumer.RangeAssignor # 默认分区策略 消费者组的分区策略不一致可能导致问题
       retry.backoff.ms: 100 # 尝试重试对给定主题分区的失败请求之前等待的时间。这避免了在某些故障场景下在紧密循环中重复发送请求。
+      fetch.min.bytes: 100 # 消费者请求一次最小的响应数据单位字节,如果服务端没有足够的数据返回，则会等待至fetch.max.wait.ms返回。配置不会直接生效
+      fetch.max.wait.ms: 5000 # 拉取消息数据大小不够时的等待时间。配置不会直接生效
+      max.poll.records: 500 # 消费者一次拉取请求的最大消息数。配置不会直接生效
+
 
