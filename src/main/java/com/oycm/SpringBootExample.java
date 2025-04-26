@@ -67,7 +67,8 @@ public class SpringBootExample {
     }
 
     // 消费者
-    @KafkaListener(topics = "org.test1")
+    // 指定消费者线程名称
+    @KafkaListener(id = "org.test1", idIsGroup = false, topics = "org.test1")
     public void listen(ConsumerRecord<String, String> cr) throws Exception {
         log.info("consumer: " + cr.toString());
         latch.countDown();
