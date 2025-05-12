@@ -70,6 +70,7 @@ public class SpringBootExample {
     @KafkaListener(topics = "org.test1")
     public void listen(ConsumerRecord<String, String> cr) throws Exception {
         log.info("consumer: " + cr.toString());
+        Thread.sleep(60000);
         latch.countDown();
     }
 
